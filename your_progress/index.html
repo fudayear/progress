@@ -1,22 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <div></div>
 
-  <form action="">
-    <input type="text" name="name" id="name" />
-    <input type="submit" value="送信" />
-  </form>
 </head>
 
 <body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.ts"></script>
+  <div class="container w-75 mx-auto d-flex justify-content-center">
+    <form action="">
+      <input type="text" name="name" id="name" aria-label="ユーザー名" />
+      <input type="submit" value="Submit" />
+    </form>
+    <div id="progress"></div>
+  </div>
+  <!--<div id="app"></div>-->
+  <script type="module" src="./src/main.ts"></script>
 </body>
 
 </html>
