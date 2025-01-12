@@ -13,10 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.w-75 {
-  width: 75%;
-}
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -104,4 +100,9 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* ここから自分で書いたもの */
+.w-75 {
+  width: 75%;
 }

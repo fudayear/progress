@@ -10,11 +10,39 @@
 </head>
 
 <body>
-  <div class="container w-75 mx-auto d-flex justify-content-center">
-    <form action="">
-      <input type="text" name="name" id="name" aria-label="ユーザー名" />
-      <input type="submit" value="Submit" />
+  <div class="container w-75 mx-auto justify-content-center">
+
+    <form action="" class="w-100">
+
+      <div class="row g-2">
+        <div class="col-auto">
+          <label for="author">名前 :</label>
+        </div>
+        <div class="col-12">
+          <input type="text" class="d-inline-flex form-control" name="author" id="author" value="" aria-label="名前" />
+        </div>
+      </div>
+
+      <div class="row g-2">
+        <div class="col-auto">
+          <label for="progress">本文 :</label>
+        </div>
+        <div class="col-12">
+          <textarea type="text" class="form-control " name="progress" id="progress" aria-label="本文" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-3">
+        <input class="btn w-auto" type="submit" value="送信" />
+
+      </div>
     </form>
+
+    <hr>
+
+    <div class="fs-3 fs-bold d-flex justify-content-center">progress</div>
+
+
     <div id="progress"></div>
   </div>
   <!--<div id="app"></div>-->
