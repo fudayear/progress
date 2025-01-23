@@ -12,14 +12,16 @@
 <body>
   <div class="container w-75 mx-auto justify-content-center">
 
-    <form action="" class="w-100">
+    <form action="" class="w-100" enctype="multipart/form-data">
 
       <div class="row g-2">
         <div class="col-auto">
           <label for="author">名前 :</label>
         </div>
         <div class="col-12">
-          <input type="text" class="d-inline-flex form-control" name="author" id="author" value="" aria-label="名前" />
+          <input type="text" class="d-inline-flex form-control" aria-labelledby="authorAriaLabel" name="author"
+            id="author" value="" aria-label="名前" />
+          <div id="authorAriaLabel" class="form-text">50文字以内</div>
         </div>
       </div>
 
@@ -28,7 +30,9 @@
           <label for="progress">本文 :</label>
         </div>
         <div class="col-12">
-          <textarea type="text" class="form-control " name="progress" id="progress" aria-label="本文" rows="3"></textarea>
+          <textarea type="text" class="form-control " aria-labelledby="progressAriaLabel" name="progress" id="progress"
+            aria-label="本文" rows="3"></textarea>
+          <div id="progressAriaLabel" class="form=text">200文字以内</div>
         </div>
       </div>
 
@@ -37,6 +41,8 @@
 
       </div>
     </form>
+
+    <div id="log" class="text-danger"></div>
 
     <hr>
 

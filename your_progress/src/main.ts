@@ -16,21 +16,31 @@ const testGet = async () => {
   }
 };
 //テキストを送る
-const post = async (massage: string, author: string) => {
-  const error = await supabase.from('main_texts').insert([{
-    content: massage,
+//TODO:postでlogをreturn→log.innerHTMLで表示の流れはまだ未検証
+const post = async (message: string, author: string) => {
+  if (author.length >= 50) {
+    console.error("author length has exceeded the limit:50.");
+    return "名前の長さが50文字を越えたため、送信できませんでした";
+  }
+  if (message.length >= 200) {
+    console.error("message length has exceeded the limit:200")
+    return "本文の長さが200文字を越えたため、送信できませんでした"
+  }
+  const { data, error } = await supabase.from('main_texts').insert([{
+    content: message,
     author: author,
   }]);
   if (error) {
-    console.error('Error:', error);
+    console.error('Error:', error.message);
+    return "システム側の問題で送信できませんでした" as string;
   } else {
-    console.log("Data posted: ", massage, author);
+    console.log("Data posted message: ", message, " author:", author);
+    return "送信されました" as string;
   }
 }
 //表示テキストを取得
-//なぜか動かない
 const progresGet = async () => {
-  const { data: mainTexts, error } = await supabase
+  const { data, error } = await supabase
     .from('main_texts')
     .select('*')
     .order('id', { ascending: false })
@@ -39,20 +49,37 @@ const progresGet = async () => {
   if (error) {
     console.error(error);
   } else {
-    console.log(mainTexts);
+    console.log(data);
   }
 }
 
 //ここから上は関数
-//ここから下はページが読み込まれた時に呼び出される、main関数のようなもの
-progresGet();
+//TODO:https://chatgpt.com/share/67921d1d-14e8-800e-9f9c-ef53e3e23caa これをやる
 
-const form = document.querySelector('form') as HTMLFormElement;
-const content = document.querySelector('[id = "progress"]') as HTMLDivElement;
+const main = async () => {
+  try {
+    progresGet();
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault()
+    const form = document.querySelector('form') as HTMLFormElement;
+    const content = document.querySelector('[id = "progress"]') as HTMLDivElement;
+    const log = document.querySelector('[id = "progress"]') as HTMLDivElement;
 
-  const formData = new FormData(form);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
 
-})
+      const formData = new FormData(form);
+      const author = formData.get('author') as string;
+      const message = formData.get('progress') as string;
+
+      const logMessage = await post(message, author);
+      log.innerHTML = logMessage;
+    })
+  } catch (error) {
+    console.error(error);
+  }
+
+}
+
+main();
+
+
